@@ -7,6 +7,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="teal">#009688</color>
         <color name="colorPrimary">#00796B</color>
+        <color name="colorTertiary">#b6dfdc</color>
         <color name="colorPrimaryVariant">#004D40</color>
         <color name="colorOnPrimary">#FFFFFF</color>
 

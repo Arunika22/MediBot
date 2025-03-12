@@ -4,12 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:padding="24dp">
+    android:background="@android:color/white">
 
-    <!-- App Logo -->
-
-    <!-- App Name -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="80dp"
@@ -18,7 +14,6 @@
         android:contentDescription="App Logo"
         android:src="@drawable/image1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/teal" />
@@ -28,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/MediBot"
-        android:textSize="22sp"
+        android:textSize="26sp"
         android:textColor="@color/teal"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/logoImageView"
@@ -36,13 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- Title -->
-
-    <!-- Subtitle -->
-
-    <!-- Login Button -->
-
-    <!-- Sign Up Button -->
 
     <TextView
         android:id="@+id/titleTextView"
@@ -51,7 +39,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/let_s_get_started"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -68,28 +56,28 @@
         android:text="@string/login_to_enjoy_the_features_we_ve_provided_and_stay_healthy"
         android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:gravity="center"
+        android:layout_marginHorizontal="60dp"
         android:text="@string/login"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitleTextView" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -99,8 +87,8 @@
         android:text="@string/sign_up"
         android:textColor="@color/teal"
         android:textSize="16sp"
+        android:layout_marginHorizontal="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
 

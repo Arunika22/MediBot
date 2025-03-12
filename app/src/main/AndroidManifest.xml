@@ -33,7 +33,7 @@
 
         <!-- Splash Screen Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:theme="@style/Theme.MyApplication"
             android:exported="true">
             <intent-filter>
@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Onboarding1Activity" android:exported="true" />
+        <activity android:name=".WalkthroughActivity" android:exported="true" />
         <activity android:name=".Onboarding2Activity" android:exported="true" />
         <activity android:name=".Onboarding3Activity" android:exported="true" />
         <activity android:name=".LoginActivity" android:exported="true" />
