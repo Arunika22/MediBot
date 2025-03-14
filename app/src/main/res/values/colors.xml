@@ -13,4 +13,6 @@
 
     <color name="colorSecondary">#4DB6AC</color>  <!-- Light Green -->
     <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="hintTextColor">#A1A8B0</color>
+    <color name="EditTextBg">#F9FAFB</color>
 </resources>

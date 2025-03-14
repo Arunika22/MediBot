@@ -1,16 +1,15 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.example.myapplication.R
 import com.example.myapplication.adapters.OnboardingAdapter
 import com.example.myapplication.databinding.ActivityWalkthroughBinding
 import com.example.myapplication.models.OnboardingItem
@@ -32,6 +31,7 @@ class WalkthroughActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding= ActivityWalkthroughBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
@@ -39,7 +39,7 @@ class WalkthroughActivity : AppCompatActivity() {
         tvTitle = binding?.tvOnboardingTitle?:TextView(this)
 
         binding?.btnSkip?.setOnClickListener {
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, GetStartedActivity::class.java))
             finish()
         }
 
@@ -51,7 +51,7 @@ class WalkthroughActivity : AppCompatActivity() {
             if (currentPage < onboardingItems.size - 1) {
                 currentPage++
             } else {
-                startActivity(Intent(this,LoginActivity::class.java))
+                startActivity(Intent(this, GetStartedActivity::class.java))
                 finish()
             }
             viewPager.setCurrentItem(currentPage, true)
