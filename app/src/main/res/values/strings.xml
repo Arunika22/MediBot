@@ -12,4 +12,11 @@
     <string name="login_to_enjoy_the_features_we_ve_provided_and_stay_healthy">Login to enjoy the features we’ve provided, and stay healthy!</string>
     <string name="sign_up">Sign Up</string>
     <string name="login">Login</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

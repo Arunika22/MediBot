@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.R
+import com.example.myapplication.activities.home.MainActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -25,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding?.dontHaveAccountSignUp?.setOnClickListener {
             startActivity(Intent(this,SignUpActivity::class.java))
+        }
+
+        binding?.btnLogin?.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
         }
 
     }

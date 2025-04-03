@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <!-- Online Status Indicator -->
+        <View
+            android:id="@+id/viewOnlineStatus"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/shape_circle_green"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/ivDoctorPhoto"
+            app:layout_constraintStart_toStartOf="@id/ivDoctorPhoto"/>
+
+        <!-- Doctor Photo -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ivDoctorPhoto"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivDoctorImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Doctor Name -->
+        <TextView
+            android:id="@+id/tvDoctorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/ivDoctorPhoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivDoctorPhoto"
+            tools:text="Dr. Ahmed Khan"/>
+
+        <!-- Specialization -->
+        <TextView
+            android:id="@+id/tvSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#4B7F77"
+            app:layout_constraintStart_toStartOf="@id/tvDoctorName"
+            app:layout_constraintTop_toBottomOf="@id/tvDoctorName"
+            tools:text="Cardiologist"/>
+
+        <!-- Experience and Rating Container -->
+        <LinearLayout
+            android:id="@+id/containerExperienceRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/tvSpecialization"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSpecialization">
+
+            <!-- Experience -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_appointment"
+                    app:tint="#AAAAAA" />
+
+                <TextView
+                    android:id="@+id/tvExperience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#888888"
+                    android:layout_marginStart="4dp"
+                    tools:text="2 years"/>
+            </LinearLayout>
+
+            <!-- Rating -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginStart="16dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_star"
+                    app:tint="#FFC107" />
+
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#888888"
+                    android:layout_marginStart="4dp"
+                    tools:text="4.8"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/ivDoctorPhoto"/>
+
+        <!-- Price and Book Button -->
+        <TextView
+            android:id="@+id/tvCurrencySymbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"/>
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@id/tvCurrencySymbol"
+            app:layout_constraintTop_toTopOf="@id/tvCurrencySymbol"
+            app:layout_constraintBottom_toBottomOf="@id/tvCurrencySymbol"
+            tools:text="500.00"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBook"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Book"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:paddingHorizontal="24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/bg_button_teal"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvPrice"
+            app:layout_constraintBottom_toBottomOf="@id/tvPrice"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

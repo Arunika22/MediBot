@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.home.ui.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find your desired \nhealth solution"
+            android:textSize="27sp"
+            android:lineSpacingExtra="5dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"/>
+
+        <ImageButton
+            android:id="@+id/btn_notifications"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="notifications"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_notification"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:background="@drawable/custom_searchbar_style"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:queryHint="Search for doctors, drugs ..."
+            app:iconifiedByDefault="false"
+            app:searchIcon="@drawable/ic_search"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_features"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/search_view_home"
+            android:layout_marginTop="30dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_doctor"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:cardCornerRadius="20dp"
+                android:elevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_report_analysis"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_steth"
+                    android:scaleType="fitCenter"
+                    android:padding="20dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_report_analysis"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:cardCornerRadius="20dp"
+                android:elevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_doctor"
+                app:layout_constraintEnd_toStartOf="@id/btn_symptoms_checker"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_medicine"
+                    android:scaleType="fitCenter"
+                    android:padding="20dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_symptoms_checker"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:cardCornerRadius="20dp"
+                android:elevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_report_analysis"
+                app:layout_constraintEnd_toStartOf="@id/btn_medical_guidance"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_symptoms"
+                    android:scaleType="fitCenter"
+                    android:padding="20dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_medical_guidance"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:cardCornerRadius="20dp"
+                android:elevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_symptoms_checker"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_ambulance"
+                    android:scaleType="fitCenter"
+                    android:padding="20dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Doctor"
+                android:textSize="14sp"
+                android:textColor="@color/hintTextColor"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/btn_doctor"
+                app:layout_constraintStart_toStartOf="@id/btn_doctor"
+                app:layout_constraintEnd_toEndOf="@id/btn_doctor"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Report\nAnalysis"
+                android:textSize="14sp"
+                android:textColor="@color/hintTextColor"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/btn_report_analysis"
+                app:layout_constraintStart_toStartOf="@id/btn_report_analysis"
+                app:layout_constraintEnd_toEndOf="@id/btn_report_analysis"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Symptom\nChecker"
+                android:textSize="14sp"
+                android:textColor="@color/hintTextColor"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/btn_symptoms_checker"
+                app:layout_constraintStart_toStartOf="@id/btn_symptoms_checker"
+                app:layout_constraintEnd_toEndOf="@id/btn_symptoms_checker"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Medical\nGuidance"
+                android:textSize="14sp"
+                android:textColor="@color/hintTextColor"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/btn_medical_guidance"
+                app:layout_constraintStart_toStartOf="@id/btn_medical_guidance"
+                app:layout_constraintEnd_toEndOf="@id/btn_medical_guidance"
+                android:layout_marginTop="8dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_top_docs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Doctors"
+            app:layout_constraintTop_toBottomOf="@id/layout_features"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_see_all_docs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See all"
+            app:layout_constraintTop_toBottomOf="@id/layout_features"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:layout_marginTop="28dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_top_docs_profiles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_docs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="50dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
