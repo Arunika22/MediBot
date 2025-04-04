@@ -1,5 +1,6 @@
 package com.example.myapplication.activities.home.ui.doctor
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
+import com.example.myapplication.activities.home.ui.appointment.MakeAppointment
 import com.example.myapplication.databinding.ActivityDoctorProfileBinding
 
 class DoctorProfileActivity : AppCompatActivity() {
@@ -66,6 +68,7 @@ class DoctorProfileActivity : AppCompatActivity() {
         // Appointment button click listener
         binding.cardAppointment.setOnClickListener {
             Toast.makeText(this, "Making appointment", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,MakeAppointment::class.java))
         }
     }
 }

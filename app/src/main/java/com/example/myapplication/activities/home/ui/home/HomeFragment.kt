@@ -1,5 +1,6 @@
 package com.example.myapplication.activities.home.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.activities.NotificationsActivity
+import com.example.myapplication.activities.home.ui.doctor.DoctorFragment
 import com.example.myapplication.adapters.TopDocsAdapter
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.models.DoctorData
 import com.example.myapplication.utils.MarginItemDecoration
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -52,6 +57,17 @@ class HomeFragment : Fragment() {
         val marginInPixels = resources.getDimensionPixelSize(R.dimen.item_bottom_margin) // You can define this dimension in res/values/dimens.xml
         val itemDecoration = MarginItemDecoration(0,0,0,marginInPixels)
         recyclerView.addItemDecoration(itemDecoration)
+
+        binding.btnNotifications.setOnClickListener {
+            startActivity(Intent(requireContext(), NotificationsActivity::class.java))
+        }
+
+        binding.tvSeeAllDocs.setOnClickListener {
+//            navigate to a fragment using BottomNavigation
+            val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+            // Set the Profile tab as selected
+            bottomNav.selectedItemId = R.id.navigation_doctors
+        }
 
         return root
     }
