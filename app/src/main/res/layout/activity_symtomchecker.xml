@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/checkbox_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Your Symptoms"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp" />
+
+        <GridLayout
+            android:id="@+id/checkboxGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:useDefaultMargins="true">
+
+            <!-- Symptom CheckBoxes Start -->
+            <CheckBox android:id="@+id/checkbox_abdominal_pain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Abdominal pain"/>
+            <CheckBox android:id="@+id/checkbox_abnormal_menstruation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Abnormal menstruation"/>
+            <CheckBox android:id="@+id/checkbox_acidity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Acidity"/>
+            <CheckBox android:id="@+id/checkbox_acute_liver_failure" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Acute liver failure"/>
+            <CheckBox android:id="@+id/checkbox_altered_sensorium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Altered sensorium"/>
+            <CheckBox android:id="@+id/checkbox_anxiety" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Anxiety"/>
+            <CheckBox android:id="@+id/checkbox_back_pain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Back pain"/>
+            <CheckBox android:id="@+id/checkbox_belly_pain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Belly pain"/>
+            <CheckBox android:id="@+id/checkbox_blackheads" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Blackheads"/>
+            <CheckBox android:id="@+id/checkbox_bladder_discomfort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bladder discomfort"/>
+            <CheckBox android:id="@+id/checkbox_blister" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Blister"/>
+            <CheckBox android:id="@+id/checkbox_blood_in_sputum" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Blood in sputum"/>
+            <CheckBox android:id="@+id/checkbox_bloody_stool" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bloody stool"/>
+            <CheckBox android:id="@+id/checkbox_blurred_and_distorted_vision" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Blurred and distorted vision"/>
+            <CheckBox android:id="@+id/checkbox_breathlessness" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Breathlessness"/>
+            <CheckBox android:id="@+id/checkbox_brittle_nails" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Brittle nails"/>
+            <CheckBox android:id="@+id/checkbox_bruising" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bruising"/>
+            <CheckBox android:id="@+id/checkbox_burning_micturition" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Burning micturition"/>
+            <CheckBox android:id="@+id/checkbox_chest_pain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chest pain"/>
+            <CheckBox android:id="@+id/checkbox_chills" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chills"/>
+            <!-- Add more CheckBoxes here as needed, in the same format -->
+
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>
