@@ -62,6 +62,11 @@
         <activity
             android:name=".activities.GetStartedActivity"
             android:exported="true" />
+        <activity android:name="com.example.medibot.PredictionResultActivity"
+            android:exported="true" />
+        <activity android:name="com.example.medibot.SymptomCheckerActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

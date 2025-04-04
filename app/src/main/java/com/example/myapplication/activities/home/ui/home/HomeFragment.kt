@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -19,6 +19,7 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.models.DoctorData
 import com.example.myapplication.utils.MarginItemDecoration
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.medibot.SymptomCheckerActivity
 
 class HomeFragment : Fragment() {
 
@@ -67,6 +68,13 @@ class HomeFragment : Fragment() {
             val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
             // Set the Profile tab as selected
             bottomNav.selectedItemId = R.id.navigation_doctors
+        }
+
+        // 🔹 Set click listener for the symptom checker card
+        val symptomCheckerBtn = root.findViewById<CardView>(R.id.btn_symptoms_checker)
+        symptomCheckerBtn.setOnClickListener {
+            val intent = Intent(requireContext(), SymptomCheckerActivity::class.java)
+            startActivity(intent)
         }
 
         return root
