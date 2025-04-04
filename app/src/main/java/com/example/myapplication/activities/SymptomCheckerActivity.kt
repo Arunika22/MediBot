@@ -1,13 +1,17 @@
 package com.example.medibot
 
-import com.example.myapplication.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
+import com.example.myapplication.databinding.ActivitySymtomcheckerBinding
 
 class SymptomCheckerActivity : AppCompatActivity() {
+
+    private var _binding:ActivitySymtomcheckerBinding?=null
+    private val binding get() = _binding!!
 
     private val symptoms = listOf(
         "abdominal_pain", "abnormal_menstruation", "acidity", "acute_liver_failure",
@@ -47,22 +51,31 @@ class SymptomCheckerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_symtomchecker)
+        _binding=ActivitySymtomcheckerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val container = findViewById<LinearLayout>(R.id.checkbox_container)
+        val gridContainer = findViewById<GridLayout>(R.id.grid_checkbox_container)
+        val predictButton = findViewById<Button>(R.id.btn_predict)
 
         val checkBoxes = mutableListOf<CheckBox>()
+
         symptoms.forEach { symptom ->
-            val cb = CheckBox(this)
-            cb.text = symptom.replace('_', ' ').trim()
-            container.addView(cb)
+            val cb = CheckBox(this).apply {
+                text = symptom.replace('_', ' ').trim()
+                layoutParams = GridLayout.LayoutParams().apply {
+                    width = 0
+                    height = GridLayout.LayoutParams.WRAP_CONTENT
+                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                    rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                }
+            }
+            gridContainer.addView(cb)
             checkBoxes.add(cb)
         }
 
-        val predictButton = Button(this).apply {
-            text = "Predict Diseases"
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
         }
-        container.addView(predictButton)
 
         predictButton.setOnClickListener {
             val selected = checkBoxes.filter { it.isChecked }.map { it.text.toString().replace(" ", "_") }
@@ -75,5 +88,10 @@ class SymptomCheckerActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

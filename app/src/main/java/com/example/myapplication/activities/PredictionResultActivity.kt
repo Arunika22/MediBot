@@ -1,5 +1,6 @@
 package com.example.medibot
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +11,16 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import kotlin.math.min
 import android.util.Log
+import com.example.myapplication.activities.home.MainActivity
+import com.example.myapplication.databinding.ActivityPredictionBinding
+
 private const val err= "PredictionDebug"
 
 
 class PredictionResultActivity : AppCompatActivity() {
+
+    private var _binding: ActivityPredictionBinding?=null
+    private val binding get() = _binding!!
 
     private lateinit var interpreter: Interpreter
     private lateinit var allSymptoms: List<String>  // Full symptom list used during training
@@ -21,7 +28,8 @@ class PredictionResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prediction)
+        _binding= ActivityPredictionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Log.d(err, "PredictionResultActivity started")
 
         val resultText = findViewById<TextView>(R.id.predictionResultText)
@@ -61,9 +69,16 @@ class PredictionResultActivity : AppCompatActivity() {
         val expectedInputSize = interpreter.getInputTensor(0).shape()[1]
         Log.d(err, "Input array length: ${inputArray[0].size}, Model expects: $expectedInputSize")
 
+        binding.predictedSymptoms.text = selectedSymptoms
+            .mapIndexed { index, symptom -> "${index + 1}. ${symptom.replace('_', ' ').trim()}" }
+            .joinToString("\n")  // Use newline for better readability
 
-        resultText.text = "Selected Symptoms:\n${selectedSymptoms.joinToString(", ")}\n\nPredictions:\n" +
-                predictions.joinToString("\n") { "${it.first}: ${(it.second * 100).toInt()}%" }
+        binding.predictionResultText.text = predictions.joinToString("\n") { "${it.first}: ${(it.second * 100).toInt()}%" }
+
+        binding.btnGoHome.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+            finishAffinity()
+        }
     }
 
     private fun loadModelFile(modelFileName: String): MappedByteBuffer {
@@ -174,5 +189,10 @@ class PredictionResultActivity : AppCompatActivity() {
 
     companion object {
         private const val NUM_CLASSES = 41 // Replace with actual number of diseases in your dataset
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 }
