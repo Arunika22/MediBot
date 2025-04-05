@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#E8F5E9"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_user"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:textSize="22sp"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user@example.com"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Health Info -->
+        <TextView
+            android:id="@+id/healthStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Health Data: Not Available"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp" />
+
+        <!-- Tips or Status -->
+        <TextView
+            android:id="@+id/wellnessTips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💡 Stay hydrated and walk daily!"
+            android:textSize="16sp"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="24dp" />
+
+
+
+        <!-- Log Out -->
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#C62828"
+            android:textColor="#fff" />
+    </LinearLayout>
+</ScrollView>
