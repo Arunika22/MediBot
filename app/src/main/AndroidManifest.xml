@@ -66,6 +66,8 @@
             android:exported="true" />
         <activity android:name="com.example.medibot.SymptomCheckerActivity"
             android:exported="true" />
+        <activity android:name="com.example.medibot.FirstAidActivity"
+            android:exported="true" />
 
     </application>
 

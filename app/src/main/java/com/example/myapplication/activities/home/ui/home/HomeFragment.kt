@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.medibot.FirstAidActivity
 import com.example.myapplication.R
 import com.example.myapplication.activities.NotificationsActivity
 import com.example.myapplication.activities.home.ui.doctor.DoctorFragment
@@ -74,6 +75,11 @@ class HomeFragment : Fragment() {
         val symptomCheckerBtn = root.findViewById<CardView>(R.id.btn_symptoms_checker)
         symptomCheckerBtn.setOnClickListener {
             val intent = Intent(requireContext(), SymptomCheckerActivity::class.java)
+            startActivity(intent)
+        }
+        val medicalGuidanceBtn = root.findViewById<CardView>(R.id.btn_medical_guidance)
+        medicalGuidanceBtn.setOnClickListener {
+            val intent = Intent(requireContext(), FirstAidActivity::class.java)
             startActivity(intent)
         }
 
