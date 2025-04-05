@@ -210,76 +210,14 @@
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/btn_login_using_email_otp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_marginHorizontal="60dp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/ll_or_divider"-->
-<!--                android:background="@drawable/rounded_outline_button2"-->
-<!--                android:paddingVertical="15dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_marginStart="15dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/glogo" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="LOGIN USING GOOGLE"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginStart="7dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:paddingStart="10dp"-->
-<!--                    android:paddingEnd="15dp" />-->
-
-<!--            </LinearLayout>-->
 
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/btn_login_using_google"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_marginHorizontal="60dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/btn_login_using_email_otp"-->
-<!--                android:background="@drawable/rounded_outline_button2"-->
-<!--                android:paddingVertical="15dp">-->
 
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_marginStart="15dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:tint="@color/black"-->
-<!--                    android:src="@drawable/ic_email" />-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="LOGIN USING EMAIL"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginStart="7dp"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center_horizontal"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:paddingStart="10dp"-->
-<!--                    android:paddingEnd="15dp" />-->
 
-<!--            </LinearLayout>-->
+
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
