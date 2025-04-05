@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Colors_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@drawable/chip_choice_background_selector</item>
+        <item name="android:textColor">@drawable/radio_text_selector</item>
+        <item name="chipCornerRadius">8dp</item>
+        <item name="rippleColor">#13B97D</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

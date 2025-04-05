@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Medi Bot</string>
+    <string name="app_logo">App Logo</string>
+    <string name="MediBot">MediBot</string>
+    <string name="skip">Skip</string>
+    <string name="consult_doctor">Consult only with a doctor you trust</string>
+    <string name="doctorimage1">DoctorImage1</string>
+    <string name="doctorimage">doctor_image1</string>
+    <string name="consult_only_with_a_doctor_you_trust">Consult only with a doctor you trust</string>
+    <string name="find_a_lot_of_specialist_doctors_in_one_place">Find a lot of specialist doctors in one place</string>
+    <string name="let_s_get_started">Let’s get started!</string>
+    <string name="login_to_enjoy_the_features_we_ve_provided_and_stay_healthy">Login to enjoy the features we’ve provided, and stay healthy!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
