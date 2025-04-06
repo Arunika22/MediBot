@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,6 +20,12 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.MedicineReminder"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MedicalReportAnalysis"
+            android:exported="false" />
         <activity
             android:name=".activities.NotificationsActivity"
             android:exported="false" />
@@ -62,11 +68,12 @@
         <activity
             android:name=".activities.GetStartedActivity"
             android:exported="true" />
-        <activity android:name="com.example.medibot.PredictionResultActivity"
+        <activity
+            android:name="com.example.medibot.PredictionResultActivity"
             android:exported="true" />
-        <activity android:name="com.example.medibot.SymptomCheckerActivity"
+        <activity
+            android:name="com.example.medibot.SymptomCheckerActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>

@@ -20,6 +20,8 @@ import com.example.myapplication.models.DoctorData
 import com.example.myapplication.utils.MarginItemDecoration
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.medibot.SymptomCheckerActivity
+import com.example.myapplication.activities.MedicalReportAnalysis
+import com.example.myapplication.activities.MedicineReminder
 
 class HomeFragment : Fragment() {
 
@@ -63,6 +65,17 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), NotificationsActivity::class.java))
         }
 
+        binding.btnReportAnalysis.setOnClickListener {
+            startActivity(Intent(requireContext(),MedicalReportAnalysis::class.java))
+        }
+
+        binding.btnDoctor.setOnClickListener {
+            // navigate to a fragment using BottomNavigation
+            val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+            // Set the Profile tab as selected
+            bottomNav.selectedItemId = R.id.navigation_doctors
+        }
+
         binding.tvSeeAllDocs.setOnClickListener {
 //            navigate to a fragment using BottomNavigation
             val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
@@ -75,6 +88,10 @@ class HomeFragment : Fragment() {
         symptomCheckerBtn.setOnClickListener {
             val intent = Intent(requireContext(), SymptomCheckerActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.fabAddMedicineReminder.setOnClickListener {
+            startActivity(Intent(requireContext(),MedicineReminder::class.java))
         }
 
         return root
