@@ -7,7 +7,9 @@ import android.view.WindowManager
 import android.view.animation.TranslateAnimation
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.activities.home.MainActivity
 import com.example.myapplication.databinding.ActivitySplashBinding
+import com.example.myapplication.utils.SharedPreferencesUtils
 
 class SplashScreen : AppCompatActivity() {
 
@@ -28,8 +30,15 @@ class SplashScreen : AppCompatActivity() {
         binding?.tvTitle?.startAnimation(slideAnimation)
 
         Handler().postDelayed({
-            startActivity(Intent(this, WalkthroughActivity::class.java))
-            overridePendingTransition(androidx.appcompat.R.anim.abc_slide_in_bottom,1)
+            val sharedPreferencesUtils=SharedPreferencesUtils(this)
+            if (sharedPreferencesUtils.getString("token").isNotEmpty()) {
+                // User is already logged in, navigate to MainActivity
+                startActivity(Intent(this, MainActivity::class.java))
+                overridePendingTransition(androidx.appcompat.R.anim.abc_slide_in_bottom,1)
+            } else {
+                startActivity(Intent(this, WalkthroughActivity::class.java))
+                overridePendingTransition(androidx.appcompat.R.anim.abc_slide_in_bottom,1)
+            }
             finish()//finishes this activity
         },1700)
     }

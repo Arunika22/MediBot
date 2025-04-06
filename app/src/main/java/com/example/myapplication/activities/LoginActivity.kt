@@ -12,6 +12,7 @@ import com.example.myapplication.activities.home.MainActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
 
 import android.widget.Toast
+import com.example.myapplication.utils.SharedPreferencesUtils
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
@@ -73,11 +74,30 @@ class LoginActivity : BaseActivity() {
                 runOnUiThread {
                     if (response.isSuccessful) {
                         hideLoading()
-                        Log.e("loginResponse",response.body?.string().toString())
-                        // You can extract token or user info here if needed
-                        Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
+                        // Read the response body ONCE and store it in a variable
+                        val responseBodyString = response.body?.string()
+
+                        // Log the response
+                        Log.e("loginResponse", responseBodyString.toString())
+
+                        // Parse the response
+                        try {
+                            val jsonResponse = responseBodyString?.let { JSONObject(it) }
+                            val token = jsonResponse?.getString("token")
+                            val user = jsonResponse?.getJSONObject("user")
+
+                            val preferencesUtils = SharedPreferencesUtils(this@LoginActivity)
+                            preferencesUtils.putString("token", token.toString())
+                            preferencesUtils.putString("userName", user?.getString("name").toString())
+                            preferencesUtils.putString("userEmail", user?.getString("email").toString())
+
+                            Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
+                        } catch (e: Exception) {
+                            Log.e("LoginError", "Error parsing response: ${e.message}")
+                            Toast.makeText(this@LoginActivity, "Error processing login response", Toast.LENGTH_SHORT).show()
+                        }
                     } else {
                         hideLoading()
                         Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()

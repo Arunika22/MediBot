@@ -20,6 +20,10 @@ class GetStartedActivity : AppCompatActivity() {
         binding?.loginButton?.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
+        binding?.signUpButton?.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
 
     override fun onDestroy() {

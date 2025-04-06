@@ -1,5 +1,6 @@
 package com.example.myapplication.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
 import java.io.IOException
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
 
     private var binding: ActivitySignUpBinding? = null
     private val client = OkHttpClient()
@@ -41,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
         val name = binding?.etName?.text.toString()
         val email = binding?.etEmail?.text.toString()
         val password = binding?.etPassword?.text.toString()
-
+        showLoading("Please wait while signing up...")
         val json = JSONObject().apply {
             put("name", name)
             put("email", email)
@@ -61,15 +62,18 @@ class SignUpActivity : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
+                    hideLoading()
                     Toast.makeText(this@SignUpActivity, "Sign-up failed", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onResponse(call: Call, response: Response) {
+                hideLoading()
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@SignUpActivity, "Sign-up successful!", Toast.LENGTH_SHORT).show()
-                        finish() // Go back to login or previous screen
+                        startActivity(Intent(this@SignUpActivity,LoginActivity::class.java))
+                        finish()
                     } else {
                         Toast.makeText(this@SignUpActivity, "Sign-up failed: ${response.message}", Toast.LENGTH_LONG).show()
                     }

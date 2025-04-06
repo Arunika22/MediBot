@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.models.Doctor
+import kotlin.random.Random
 
 class DoctorAdapter(
     private val doctors: List<Doctor>,
@@ -55,7 +56,7 @@ class DoctorAdapter(
 
             // Load doctor image
             Glide.with(itemView.context)
-                .load(doctor.imageUrl)
+                .load(getRandomUserUrl())
                 .placeholder(R.drawable.ic_profile_circle)
                 .circleCrop()
                 .into(ivDoctorImage)
@@ -69,5 +70,10 @@ class DoctorAdapter(
                 onDoctorClickListener.onBookClick(doctor)
             }
         }
+    }
+
+    fun getRandomUserUrl(): String {
+        val randomNumber = Random.nextInt(1, 61) // 1 to 60 inclusive
+        return "https://randomuser.me/api/portraits/men/$randomNumber.jpg"
     }
 }

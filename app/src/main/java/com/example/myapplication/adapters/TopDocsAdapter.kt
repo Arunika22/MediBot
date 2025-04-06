@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.models.DoctorData
+import kotlin.random.Random
 
 class TopDocsAdapter(
     var profileList: ArrayList<DoctorData>,
@@ -42,10 +43,9 @@ class TopDocsAdapter(
         holder.tvRating.text = currentUser.rating
 
         // Load image with Glide
-        val imageUrl = "https://imgs.search.brave.com/Tw_Wh1rl8hVTb9XRQ7rLFYstwaRA10ZhizRuDztxPPg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzUxLzgw/LzM2MF9GXzI5NTUx/ODA1Ml9hTzVkOUNx/UmhQbmpsTkRUUkRq/S0xaSE5mdHFmc3h6/SS5qcGc"
 
         Glide.with(holder.itemView.context)
-            .load(imageUrl)
+            .load(getRandomUserUrl())
             .apply(RequestOptions()
                 .placeholder(R.drawable.doctor_image1) // Add a placeholder drawable
                 .error(R.drawable.doctor_image1) // Add an error drawable
@@ -56,6 +56,11 @@ class TopDocsAdapter(
         holder.itemView.setOnClickListener {
             onDoctorClickListener.onDoctorClick(currentUser, position)
         }
+    }
+
+    fun getRandomUserUrl(): String {
+        val randomNumber = Random.nextInt(1, 61) // 1 to 60 inclusive
+        return "https://randomuser.me/api/portraits/men/$randomNumber.jpg"
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
