@@ -60,7 +60,7 @@ class DoctorAdapter(
 
             // Load doctor image
             Glide.with(itemView.context)
-                .load(getRandomUserUrl())
+                .load(doctor.imageUrl)
                 .placeholder(R.drawable.ic_profile_circle)
                 .circleCrop()
                 .into(ivDoctorImage)
