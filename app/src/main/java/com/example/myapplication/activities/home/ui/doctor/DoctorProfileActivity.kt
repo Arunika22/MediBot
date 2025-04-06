@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.activities.home.ui.appointment.MakeAppointment
 import com.example.myapplication.databinding.ActivityDoctorProfileBinding
+import com.example.myapplication.models.DoctorData
 
 class DoctorProfileActivity : AppCompatActivity() {
 
@@ -26,20 +27,23 @@ class DoctorProfileActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        val doctorName = intent.getStringExtra("DOCTOR_NAME")
+        val doctorSpecialty = intent.getStringExtra("DOCTOR_SPECIALIZATION")
+        val DoctorImage = intent.getStringExtra("DOCTOR_IMAGE")
         // Load doctor image
         Glide.with(this)
-            .load("https://imgs.search.brave.com/Tw_Wh1rl8hVTb9XRQ7rLFYstwaRA10ZhizRuDztxPPg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzUxLzgw/LzM2MF9GXzI5NTUx/ODA1Ml9hTzVkOUNx/UmhQbmpsTkRUUkRq/S0xaSE5mdHFmc3h6/SS5qcGc") // Replace with your actual image URL or resource
+            .load(DoctorImage) // Replace with your actual image URL or resource
             .centerCrop()
             .into(binding.imgDoctor)
 
         // Set doctor data
         with(binding) {
-            tvDoctorName.text = "Dr. BR Khandelwaal"
-            tvSpecialty.text = "Heart"
+            tvDoctorName.text = doctorName
+            tvSpecialty.text = doctorSpecialty
             tvHospital.text = "Clinora Hospital"
-            tvDescription.text = "Dr. Khandelwaal is one of the best doctors in the Persahabatan Hospital. He has saved more than 1000 patients in the past 3 years. He has also received many awards from domestic and abroad as the best doctors. He is available on a private or schedule."
-            tvExperience.text = "3"
-            tvPatients.text = "1221"
+            tvDescription.text = "${doctorName} is one of the best doctors in the Clinora Hospital. He has saved more than 1000 patients in the past 3 years. He has also received many awards from domestic and abroad as the best doctors. He is available on a private or schedule."
+            tvExperience.text = (3..6).random().toString()
+            tvPatients.text = (1000..2000).random().toString()
             tvRating.text = "5.0"
         }
     }

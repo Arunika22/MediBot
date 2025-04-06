@@ -14,7 +14,7 @@ import com.example.myapplication.models.DoctorData
 import kotlin.random.Random
 
 class TopDocsAdapter(
-    var profileList: ArrayList<DoctorData>,
+    var profileList: List<DoctorData>,
     private val maxProfiles: Int,
     private val onDoctorClickListener: OnDoctorClickListener
 ) : RecyclerView.Adapter<ViewHolder>() {
@@ -39,13 +39,15 @@ class TopDocsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentUser = profileList[position]
         holder.personName.text = currentUser.name
-        holder.personTitle.text = currentUser.title
-        holder.tvRating.text = currentUser.rating
+        holder.personTitle.text = currentUser.specialization
+        val values = listOf(4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8)
+        val randomValue = values.random()
+        holder.tvRating.text = randomValue.toString()
 
         // Load image with Glide
 
         Glide.with(holder.itemView.context)
-            .load(getRandomUserUrl())
+            .load(currentUser.imageUrl ?: getRandomUserUrl()) // Use the image URL from the model or a random one
             .apply(RequestOptions()
                 .placeholder(R.drawable.doctor_image1) // Add a placeholder drawable
                 .error(R.drawable.doctor_image1) // Add an error drawable

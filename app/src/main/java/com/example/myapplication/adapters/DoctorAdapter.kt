@@ -10,16 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.models.Doctor
+import com.example.myapplication.models.DoctorData
 import kotlin.random.Random
 
 class DoctorAdapter(
-    private val doctors: List<Doctor>,
+    private val doctors: ArrayList<DoctorData>,
     private val onDoctorClickListener: OnDoctorClickListener
 ) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     interface OnDoctorClickListener {
-        fun onDoctorClick(doctor: Doctor)
-        fun onBookClick(doctor: Doctor)
+        fun onDoctorClick(doctor: DoctorData)
+        fun onBookClick(doctor: DoctorData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
@@ -44,15 +45,18 @@ class DoctorAdapter(
         private val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         private val btnBook: Button = itemView.findViewById(R.id.btnBook)
 
-        fun bind(doctor: Doctor) {
+        fun bind(doctor: DoctorData) {
             tvDoctorName.text = doctor.name
             tvSpecialization.text = doctor.specialization
-            tvExperience.text = doctor.experience
-            tvRating.text = doctor.rating.toString()
-            tvPrice.text = doctor.price.toString()
+            val values = listOf(4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8)
+            val randomValue = values.random()
+            tvExperience.text =(3..6).random().toString()
+            tvRating.text = randomValue.toString()
+            tvPrice.text = "${(500..1000).random()}"
 
             // Show or hide online indicator
-            viewOnlineStatus.visibility = if (doctor.isOnline) View.VISIBLE else View.GONE
+            val temp=false
+            viewOnlineStatus.visibility = if (temp) View.VISIBLE else View.GONE
 
             // Load doctor image
             Glide.with(itemView.context)
