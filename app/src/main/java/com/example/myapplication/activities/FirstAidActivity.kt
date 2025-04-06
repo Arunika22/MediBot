@@ -1,6 +1,7 @@
 package com.example.medibot
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.myapplication.R
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,10 @@ class FirstAidActivity : AppCompatActivity() {
         setContentView(R.layout.activity_first_aid)
 
         val firstAidTextView = findViewById<TextView>(R.id.firstAidTextView)
+
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            onBackPressed()
+        }
 
         val content = """
             ✅ Cuts and Bleeding:

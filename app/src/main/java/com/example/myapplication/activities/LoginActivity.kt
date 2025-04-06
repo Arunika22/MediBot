@@ -2,6 +2,7 @@ package com.example.myapplication.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,7 +17,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
 import java.io.IOException
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private var binding: ActivityLoginBinding? = null
     private val client = OkHttpClient()
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         json.put("password", password)
 
         val body = RequestBody.create(JSON, json.toString())
-
+        showLoading("Please wait...")
         val request = Request.Builder()
             .url("https://medibot-8u6y.onrender.com/v1/api/auth/login")
             .post(body)
@@ -63,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
+                    hideLoading()
                     Toast.makeText(this@LoginActivity, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -70,11 +72,14 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 runOnUiThread {
                     if (response.isSuccessful) {
+                        hideLoading()
+                        Log.e("loginResponse",response.body?.string().toString())
                         // You can extract token or user info here if needed
                         Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
                     } else {
+                        hideLoading()
                         Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
                     }
                 }

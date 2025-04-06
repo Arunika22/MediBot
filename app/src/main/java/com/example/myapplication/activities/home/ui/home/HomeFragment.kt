@@ -23,8 +23,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.medibot.SymptomCheckerActivity
 import com.example.myapplication.activities.MedicalReportAnalysis
 import com.example.myapplication.activities.MedicineReminder
+import com.example.myapplication.activities.home.ui.doctor.DoctorProfileActivity
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), TopDocsAdapter.OnDoctorClickListener {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -55,10 +56,10 @@ class HomeFragment : Fragment() {
             DoctorData("Dr. Michael", "Dentist", "4.9")
         )
 
-        // Set adapter with maxProfiles = 4 (Only 4 profiles displayed)
-        val adapter = TopDocsAdapter(doctorList, maxProfiles = 6)
+        // Set adapter with maxProfiles = 6 and pass this fragment as the click listener
+        val adapter = TopDocsAdapter(doctorList, maxProfiles = 6, this)
         recyclerView.adapter = adapter
-        val marginInPixels = resources.getDimensionPixelSize(R.dimen.item_bottom_margin) // You can define this dimension in res/values/dimens.xml
+        val marginInPixels = resources.getDimensionPixelSize(R.dimen.item_bottom_margin)
         val itemDecoration = MarginItemDecoration(0,0,0,marginInPixels)
         recyclerView.addItemDecoration(itemDecoration)
 
@@ -78,13 +79,13 @@ class HomeFragment : Fragment() {
         }
 
         binding.tvSeeAllDocs.setOnClickListener {
-//            navigate to a fragment using BottomNavigation
+            // navigate to a fragment using BottomNavigation
             val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
             // Set the Profile tab as selected
             bottomNav.selectedItemId = R.id.navigation_doctors
         }
 
-        // 🔹 Set click listener for the symptom checker card
+        // Set click listener for the symptom checker card
         val symptomCheckerBtn = root.findViewById<CardView>(R.id.btn_symptoms_checker)
         symptomCheckerBtn.setOnClickListener {
             val intent = Intent(requireContext(), SymptomCheckerActivity::class.java)
@@ -101,6 +102,19 @@ class HomeFragment : Fragment() {
         }
 
         return root
+    }
+
+    // Implement the OnDoctorClickListener interface method
+    override fun onDoctorClick(doctor: DoctorData, position: Int) {
+        // Create intent to open doctor profile
+        val intent = Intent(requireContext(), DoctorProfileActivity::class.java).apply {
+            // Pass doctor data to the profile activity
+            putExtra("DOCTOR_NAME", doctor.name)
+            putExtra("DOCTOR_TITLE", doctor.title)
+            putExtra("DOCTOR_RATING", doctor.rating)
+            // Add any other data you need to pass
+        }
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

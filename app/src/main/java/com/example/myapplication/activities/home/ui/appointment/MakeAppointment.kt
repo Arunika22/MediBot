@@ -10,6 +10,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMakeAppointmentBinding
 import com.google.android.material.chip.Chip
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MakeAppointment : AppCompatActivity() {
 
@@ -26,6 +29,7 @@ class MakeAppointment : AppCompatActivity() {
         setupChipListeners()
         setupSetAppointmentButton()
         setupBackButton()
+        setupDateChips()
 
     }
 
@@ -112,6 +116,28 @@ class MakeAppointment : AppCompatActivity() {
     private fun setupBackButton() {
         binding.ivBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun setupDateChips() {
+        val calendar = Calendar.getInstance()
+        val dayFormat = SimpleDateFormat("EEE d MMM", Locale.getDefault())
+        calendar.add(Calendar.DAY_OF_MONTH, 1)
+        val chips = listOf(
+            binding.chipDate1,
+            binding.chipDate2,
+            binding.chipDate3,
+            binding.chipDate4
+        )
+
+        // Set today's date and next 3 days
+        chips.forEachIndexed { index, chip ->
+            // Get date for this chip
+            if (index > 0) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
+            }
+            val dateText = dayFormat.format(calendar.time).uppercase()
+            chip.text = dateText
         }
     }
 }
