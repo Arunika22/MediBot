@@ -228,16 +228,28 @@ class MedicalReportAnalysis : AppCompatActivity() {
                                 try {
                                     val json = JSONObject(responseBody ?: "")
                                     val analysis = json.optJSONObject("analysis")
-                                    val haemoglobin = analysis?.optString("haemoglobin", "Not found")
-                                    val sugarLevel = analysis?.optString("sugarLevel", "Not found")
 
-                                    AlertDialog.Builder(this@MedicalReportAnalysis)
-                                        .setTitle("Upload Success")
-                                        .setMessage("Haemoglobin: $haemoglobin\nSugar Level: $sugarLevel")
-                                        .setPositiveButton("OK", null)
-                                        .show()
+                                    val haemoglobinObj = analysis?.optJSONObject("haemoglobin")
+                                    val sugarLevelObj = analysis?.optJSONObject("sugarLevel")
+
+                                    val haemoglobinValue = haemoglobinObj?.optDouble("value", -1.0) ?: -1.0
+                                    val haemoglobinMsg = haemoglobinObj?.optString("message", "No message") ?: "No message"
+
+                                    val sugarLevelValue = sugarLevelObj?.optDouble("value", -1.0) ?: -1.0
+                                    val sugarLevelMsg = sugarLevelObj?.optString("message", "No message") ?: "No message"
+
+                                    val intent = Intent(this@MedicalReportAnalysis, MedicalReportResultActivity::class.java).apply {
+                                        putExtra("haemoglobin_value", haemoglobinValue)
+                                        putExtra("haemoglobin_msg", haemoglobinMsg)
+                                        putExtra("sugarLevel_value", sugarLevelValue)
+                                        putExtra("sugarLevel_msg", sugarLevelMsg)
+                                    }
+
+                                    startActivity(intent)
+
 
                                     dialog?.dismiss()
+
                                 } catch (e: Exception) {
                                     Toast.makeText(this@MedicalReportAnalysis, "Error parsing response", Toast.LENGTH_SHORT).show()
                                 }

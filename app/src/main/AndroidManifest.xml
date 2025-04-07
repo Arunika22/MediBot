@@ -79,6 +79,8 @@
         <activity
             android:name="com.example.medibot.FirstAidActivity"
             android:exported="true" />
+        <activity android:name=".activities.MedicalReportResultActivity" />
+
     </application>
 
 </manifest>
