@@ -75,7 +75,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="14 TUE"
                 app:checkedIconVisible="false" />
 
@@ -164,7 +163,6 @@
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:textAlignment="center"
-                android:checked="true"
                 android:text="01:00 PM"
                 app:checkedIconVisible="false" />
 
