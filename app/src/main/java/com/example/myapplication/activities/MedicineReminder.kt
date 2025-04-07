@@ -2,6 +2,7 @@ package com.example.myapplication.activities
 
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -41,6 +42,10 @@ class MedicineReminder : BaseActivity() {
         // Back button click listener
         binding.btnBack.setOnClickListener {
             finish()
+        }
+
+        binding.btnSeeAllReminders.setOnClickListener {
+            startActivity(Intent(this, AllReminders::class.java))
         }
 
         // Add record button click listener

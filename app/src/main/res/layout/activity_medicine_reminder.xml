@@ -46,7 +46,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardIcon"
                 android:layout_width="240dp"
@@ -94,14 +93,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvAddReminder" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddRecord"
+                android:id="@+id/btnSeeAllReminders"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="32dp"
                 android:backgroundTint="#0EBE7F"
                 android:fontFamily="sans-serif-medium"
-                android:text="Add a record"
+                android:text="See all reminders"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
@@ -109,6 +108,23 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddRecord"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#0EBE7F"
+                android:fontFamily="sans-serif-medium"
+                android:text="Add a reminder"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSeeAllReminders" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardInputForm"
