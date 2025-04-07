@@ -20,4 +20,12 @@
     <color name="light_text">#757575</color>
     <color name="background_start">#E0F2F1</color>
     <color name="background_end">#4DB6AC</color>
+
+
+    <color name="primary_color">#6200EE</color>
+    <color name="primary_light">#BB86FC</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="background_color">#F5F5F5</color>
+    <color name="gold">#FFC107</color>
 </resources>

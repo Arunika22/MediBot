@@ -137,7 +137,7 @@
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:textAlignment="center"
-                android:text="09:30 AM"
+                android:text="10:00 AM"
                 app:checkedIconVisible="false" />
 
             <com.google.android.material.chip.Chip
@@ -146,7 +146,7 @@
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:textAlignment="center"
-                android:text="10:00 AM"
+                android:text="11:00 AM"
                 app:checkedIconVisible="false" />
 
             <com.google.android.material.chip.Chip
@@ -165,7 +165,7 @@
                 android:layout_height="60dp"
                 android:textAlignment="center"
                 android:checked="true"
-                android:text="12:30 PM"
+                android:text="01:00 PM"
                 app:checkedIconVisible="false" />
 
             <com.google.android.material.chip.Chip
@@ -174,7 +174,7 @@
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:textAlignment="center"
-                android:text="01:30 PM"
+                android:text="02:00 PM"
                 app:checkedIconVisible="false" />
 
             <com.google.android.material.chip.Chip
@@ -192,7 +192,7 @@
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:textAlignment="center"
-                android:text="04:30 PM"
+                android:text="04:00 PM"
                 app:checkedIconVisible="false" />
 
             <com.google.android.material.chip.Chip

@@ -64,7 +64,6 @@ dependencies {
 //    Dexter permission Handler
     implementation ("com.karumi:dexter:6.2.3")
 
-    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
 
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     implementation("org.tensorflow:tensorflow-lite:2.13.0")

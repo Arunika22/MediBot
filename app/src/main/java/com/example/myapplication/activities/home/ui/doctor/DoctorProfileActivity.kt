@@ -71,8 +71,11 @@ class DoctorProfileActivity : AppCompatActivity() {
 
         // Appointment button click listener
         binding.cardAppointment.setOnClickListener {
+            val doctorName = intent.getStringExtra("DOCTOR_NAME")
             Toast.makeText(this, "Making appointment", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,MakeAppointment::class.java))
+            val intent = Intent(this@DoctorProfileActivity,MakeAppointment::class.java)
+            intent.putExtra("DOCTOR_NAME", doctorName)
+            startActivity(intent)
         }
     }
 }
