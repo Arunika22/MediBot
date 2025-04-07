@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMedicalReportAnalysisBinding
 import com.example.myapplication.databinding.DialogAddMedicalReportBinding
+import com.example.myapplication.utils.SharedPreferencesUtils
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -21,16 +22,19 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-class MedicalReportAnalysis : AppCompatActivity() {
+
+class MedicalReportAnalysis : BaseActivity() {
 
     private lateinit var binding: ActivityMedicalReportAnalysisBinding
     private var selectedFileUri: Uri? = null
     private val client = OkHttpClient()
-    private val ENDPOINT_URL = "https://httpbin.org/post" // Temporary endpoint for testing
+
+    private val ENDPOINT_URL = "https://medibot-8u6y.onrender.com/v1/api/medicine/upload-report" // Temporary endpoint for testing
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
@@ -121,7 +125,9 @@ class MedicalReportAnalysis : AppCompatActivity() {
 
         // Set up upload button
         dialogBinding?.uploadButton?.setOnClickListener {
-           // uploadMedicalReport()
+            Log.d("UPLOAD_DEBUG", "Upload button clicked")
+
+            uploadMedicalReport()
         }
 
         dialog?.show()
@@ -131,51 +137,78 @@ class MedicalReportAnalysis : AppCompatActivity() {
         getContent.launch("*/*") // Accept all file types
     }
 
+
+    private fun resetUploadButton() {
+        dialogBinding?.uploadButton?.isEnabled = true
+        dialogBinding?.uploadButton?.text = "Upload"
+    }
+
     private fun uploadMedicalReport() {
-        val email = dialogBinding?.emailEditText?.text.toString()
-
-        // Validate email
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // Validate file selection
         if (selectedFileUri == null) {
             Toast.makeText(this, "Please select a file", Toast.LENGTH_SHORT).show()
+            Log.e("UPLOAD_DEBUG", "selectedFileUri is null, not uploading")
+
             return
         }
 
-        // Show loading state
+        // Placeholder JWT for now — replace with actual token
+
+        val jwtToken = SharedPreferencesUtils(this).getString("token", "")
+
+
+
+        Log.d("JWT_DEBUG", "JWT Token: $jwtToken")
+
+        // Form values (could also be editable fields in your dialog)
+        val reportType = "blood_test"
+        val description = "Regular blood test report"
+        val date = "2024-04-05"
+
         dialogBinding?.uploadButton?.isEnabled = false
         dialogBinding?.uploadButton?.text = "Uploading..."
 
-        // Create a temporary file from the URI
         try {
             val tempFile = createTempFileFromUri(selectedFileUri!!)
+            Log.d("UPLOAD_DEBUG", "Temp file name: ${tempFile?.name}")
+            Log.d("UPLOAD_DEBUG", "Temp file size: ${tempFile?.length()}")
+            Log.d("UPLOAD_DEBUG", "JWT Token used: $jwtToken")
+            Log.d("UPLOAD_DEBUG", "Selected file type: ${contentResolver.getType(selectedFileUri!!)}")
+
+
 
             if (tempFile != null) {
-                // Create multipart request
+                val mimeType = contentResolver.getType(selectedFileUri!!)
+                Log.d("UPLOAD_DEBUG", "Detected MIME type: $mimeType")
+
                 val requestBody = MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("email", email)
                     .addFormDataPart(
-                        "file",
+                        "report",
                         tempFile.name,
-                        tempFile.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                        tempFile.asRequestBody("application/pdf".toMediaTypeOrNull()) // or "image/*"
                     )
+
+                    .addFormDataPart("reportType", reportType)
+                    .addFormDataPart("description", description)
+                    .addFormDataPart("date", date)
                     .build()
 
                 val request = Request.Builder()
                     .url(ENDPOINT_URL)
+                    .addHeader("Authorization", "Bearer $jwtToken")
                     .post(requestBody)
                     .build()
-
-                // Make network request
+                Log.d("UPLOAD_DEBUG", "Request Headers: ${request.headers}")
+                Log.d("UPLOAD_DEBUG", "Request URL: ${request.url}")
+                Log.d("UPLOAD_DEBUG", "Request Method: ${request.method}")
+                Log.d("UPLOAD_DEBUG", "Request Body Content Length: ${request.body?.contentLength()}")
+                showLoading("Uploading Report...")
                 client.newCall(request).enqueue(object : Callback {
+
                     override fun onFailure(call: Call, e: IOException) {
+                        hideLoading()
                         runOnUiThread {
-                            Log.e("UploadError", "Failed to upload file", e)
+                            Log.e("UPLOAD_DEBUG", "Failed to upload file", e)
                             Toast.makeText(
                                 this@MedicalReportAnalysis,
                                 "Failed to upload: ${e.message}",
@@ -186,15 +219,46 @@ class MedicalReportAnalysis : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call, response: Response) {
+                        hideLoading()
                         runOnUiThread {
                             if (response.isSuccessful) {
-                                Toast.makeText(
-                                    this@MedicalReportAnalysis,
-                                    "Report uploaded successfully",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                dialog?.dismiss()
+                                Log.d("UPLOAD_DEBUG", "Server returned error: ${response.code}")
+                                val responseBody = response.body?.string()
+                                Log.d("UPLOAD_DEBUG", "Raw response body: $responseBody")
+
+
+                                try {
+                                    val json = JSONObject(responseBody ?: "")
+                                    val analysis = json.optJSONObject("analysis")
+
+                                    val haemoglobinObj = analysis?.optJSONObject("haemoglobin")
+                                    val sugarLevelObj = analysis?.optJSONObject("sugarLevel")
+
+                                    val haemoglobinValue = haemoglobinObj?.optDouble("value", -1.0) ?: -1.0
+                                    val haemoglobinMsg = haemoglobinObj?.optString("message", "No message") ?: "No message"
+
+                                    val sugarLevelValue = sugarLevelObj?.optDouble("value", -1.0) ?: -1.0
+                                    val sugarLevelMsg = sugarLevelObj?.optString("message", "No message") ?: "No message"
+
+                                    val intent = Intent(this@MedicalReportAnalysis, MedicalReportResultActivity::class.java).apply {
+                                        putExtra("haemoglobin_value", haemoglobinValue)
+                                        putExtra("haemoglobin_msg", haemoglobinMsg)
+                                        putExtra("sugarLevel_value", sugarLevelValue)
+                                        putExtra("sugarLevel_msg", sugarLevelMsg)
+                                    }
+
+                                    startActivity(intent)
+
+
+                                    dialog?.dismiss()
+
+                                } catch (e: Exception) {
+                                    Toast.makeText(this@MedicalReportAnalysis, "Error parsing response", Toast.LENGTH_SHORT).show()
+                                }
                             } else {
+                                val errorBody = response.body?.string()
+                                Log.e("UPLOAD_DEBUG", "Upload failed: ${response.code}, body: $errorBody")
+
                                 Toast.makeText(
                                     this@MedicalReportAnalysis,
                                     "Upload failed: ${response.code}",
@@ -206,27 +270,15 @@ class MedicalReportAnalysis : AppCompatActivity() {
                     }
                 })
             } else {
-                Toast.makeText(
-                    this,
-                    "Could not process file. Please try again.",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, "Could not process file.", Toast.LENGTH_LONG).show()
                 resetUploadButton()
             }
         } catch (e: Exception) {
+            hideLoading()
             Log.e("FileError", "Error processing file", e)
-            Toast.makeText(
-                this,
-                "Error processing file: ${e.message}",
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             resetUploadButton()
         }
-    }
-
-    private fun resetUploadButton() {
-        dialogBinding?.uploadButton?.isEnabled = true
-        dialogBinding?.uploadButton?.text = "Upload"
     }
 
     private fun createTempFileFromUri(uri: Uri): File? {
